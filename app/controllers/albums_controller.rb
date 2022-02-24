@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
-
+  before_action :require_user!
+  
   def create
     @album = Album.new(album_params)
     if @album.save!
