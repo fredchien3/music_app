@@ -1,0 +1,5 @@
+<form action="<%= new_track_note_url(@track) %>" method="get">
+  <input type="hidden" name="note[track_id]" value="<%= @track.id %>">
+  <textarea name="note[text]" id="note" cols="20" rows="2"></textarea>
+  <button type="submit">Post new note</button>
+</form>

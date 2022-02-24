@@ -1,0 +1,24 @@
+<h2>Notes for this track:</h2>
+<%= 'No notes yet -- post a note below!' if Note.where(track: @track).empty? %>
+<table>
+  <% Note.where(track: @track).each do |note| %>
+    <tr>
+      <td><%= note.user.email %>:</td>
+      <td><%= note.text %></td>
+      <td>
+        <% if note.user == current_user %>
+          <form action="/tracks/<%= @track.id %>/notes/<%= note.id %>" method="post">
+          <!--
+          don't know why track_note_url(note) didn't work.  
+          it keeps reversing the IDS so it becomes/tracks/**note_id**/notes/**track_id** 
+          maybe a smarter version of me will figure that out in the future.
+          -->
+            <%= auth_token %>
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">delete note</button>
+          </form>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -15,7 +15,6 @@ Lyrics:
 <% else %>
   Currently no lyrics - <a href="<%= edit_track_url %>">add lyrics!</a>
 <% end %>
-<br>
 
 <form action="<%= edit_track_url %>" method="get">
   <%= auth_token %>
@@ -27,3 +26,8 @@ Lyrics:
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Track">
 </form>
+<br>
+
+<%= render "notes/note" %>
+<br><br>
+<%= render "notes/form" %>
