@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User < ApplicationRecord
   # validates_presence_of :email
   after_initialize :ensure_session_token
