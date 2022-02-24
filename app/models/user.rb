@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
-  # validates_presence_of :email
+  validates_presence_of :email
   after_initialize :ensure_session_token
 
   def self.generate_session_token

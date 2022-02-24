@@ -1,0 +1,11 @@
+<h1>All Bands</h1>
+<form action="<%= new_band_url %>" method="get">
+  <%= auth_token %>
+  <input type="submit" value="Add Band">
+</form>
+
+<% @bands.each do |band| %>
+  <ul>
+    <li><a href="<%= band_url(band) %>"><%= band.name %></a></li>
+  </ul>
+<% end %>

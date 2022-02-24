@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       render json: 'credentials were wrong'
     else
       login!(user)
-      redirect_to user_url(user)
+      redirect_to bands_url
     end
   end
 
