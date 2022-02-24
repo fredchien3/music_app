@@ -1,4 +1,17 @@
-<h1>This is the <%= @band.name %> page</h1>
+<h1>Band: <%= @band.name %></h1>
+
+<h3>Albums</h3>
+<ul>
+  <% @band.albums.each do |album| %>
+    <li><a href="<%= album_url(album) %>"><%= album.title %></a></li>
+  <% end %>
+</ul>
+<br>
+
+<form action="<%= new_band_album_url(@band) %>" method="get">
+  <%= auth_token %>
+  <input type="submit" value="Add Album">
+</form>
 
 <form action="<%= edit_band_url %>" method="get">
   <%= auth_token %>
