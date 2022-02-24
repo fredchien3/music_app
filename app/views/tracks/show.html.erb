@@ -11,7 +11,7 @@ Track number: <%= @track.ord %>
 Lyrics:
 <br>
 <% if @track.lyrics %>
-  <pre><code><%= @track.lyrics %></code></pre>
+  <pre><%= self.pretty_lyrics(@track.lyrics) %></pre>
 <% else %>
   Currently no lyrics - <a href="<%= edit_track_url %>">add lyrics!</a>
 <% end %>

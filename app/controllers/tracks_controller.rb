@@ -1,5 +1,7 @@
 class TracksController < ApplicationController
+  include ERB::Util
   before_action :require_user!
+  helper_method :pretty_lyrics
 
   def create
     @track = Track.new(track_params)
@@ -46,5 +48,10 @@ class TracksController < ApplicationController
   private
   def track_params
     params.require(:track).permit(:title, :ord, :lyrics, :album_id, :bonus)
+  end
+
+  def pretty_lyrics(lyrics)
+    array = lyrics.split("\r\n")
+    array.map {|line| '&#9835; ' + h(line)}.join("\r\n").html_safe
   end
 end

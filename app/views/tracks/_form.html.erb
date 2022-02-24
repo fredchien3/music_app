@@ -33,7 +33,7 @@
 
   <label for="lyrics">Lyrics:</label>
   <br>
-  <textarea name="track[lyrics]" id="lyrics" cols="30" rows="10" preview="optional lyrics"></textarea>
+  <textarea name="track[lyrics]" id="lyrics" cols="30" rows="10" preview="optional lyrics"><%= @track.lyrics %></textarea>
   <br>
   <input type="submit" value="<%= action == :edit ? 'Update track' : 'Add new track' %>">
 </form>
