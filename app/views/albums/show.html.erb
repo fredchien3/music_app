@@ -1,8 +1,19 @@
 <a href="<%= band_url(@album.band) %>">Back to Band</a>
-
 <h1>Album: <%= @album.title %></h1>
-<h3>Band: <%= @album.band.name %></h3>
+<h2>Band: <%= @album.band.name %></h2>
 
+<h3>Tracks</h3>
+<ul>
+  <% @album.tracks.order('ord').each do |track| %>
+    <li><%= track.ord %>. <a href="<%= track_url(track) %>"><%= track.title %></a></li>
+  <% end %>
+</ul>
+<br>
+
+<form action="<%= new_album_track_url(@album) %>" method="get">
+  <%= auth_token %>
+  <input type="submit" value="Add Track">
+</form>
 
 <form action="<%= edit_album_url %>" method="get">
   <%= auth_token %>

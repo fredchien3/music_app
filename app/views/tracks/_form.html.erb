@@ -1,0 +1,39 @@
+<% if action == :edit %>
+  <% action_url = track_url(track) %>
+<% else %>
+  <% action_url = tracks_url %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label for="title">Track Title:</label>
+  <input type="text" name="track[title]" id="title" value="<%= track.title %>">
+  <br>
+
+  <label for="year">Track Number:</label>
+  <input type="number" min="1" max="500" step="1" value="1" name="track[ord]"/>
+  <br>
+
+  <label for="album">Album:</label>
+  <select name="track[album_id]" id="album" required>
+    <% Album.all.each do |album| %>
+      <option value="<%= album.id %>" <%= 'selected' if params[:album_id].to_i == album.id || track.album == album %>><%= album.title %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <input type="radio" id="regular" name="track[bonus]" value="false" checked>
+  <label for="regular">Regular Track</label>
+  <input type="radio" id="bonus" name="track[bonus]" value="true">
+  <label for="bonus">Bonus Track</label><br>
+
+  <label for="lyrics">Lyrics:</label>
+  <br>
+  <textarea name="track[lyrics]" id="lyrics" cols="30" rows="10" preview="optional lyrics"></textarea>
+  <br>
+  <input type="submit" value="<%= action == :edit ? 'Update track' : 'Add new track' %>">
+</form>

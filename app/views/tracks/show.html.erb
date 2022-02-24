@@ -1,0 +1,29 @@
+<a href="<%= band_url(@track.band) %>">Back to Band</a>
+<a href="<%= album_url(@track.album) %>">Back to Album</a>
+
+<h3>Album: <%= @track.album.title %>, by <%= @track.band.name %></h3>
+<h1>Track: <%= @track.title %></h1>
+Track number: <%= @track.ord %>
+<br>
+<%= @track.bonus ? 'Bonus track' : 'Regular track' %>
+<br>
+
+Lyrics:
+<br>
+<% if @track.lyrics %>
+  <pre><code><%= @track.lyrics %></code></pre>
+<% else %>
+  Currently no lyrics - <a href="<%= edit_track_url %>">add lyrics!</a>
+<% end %>
+<br>
+
+<form action="<%= edit_track_url %>" method="get">
+  <%= auth_token %>
+  <input type="submit" value="Edit Track">
+</form>
+
+<form action="<%= track_url %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Track">
+</form>
